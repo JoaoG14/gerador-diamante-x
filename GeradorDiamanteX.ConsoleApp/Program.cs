@@ -66,33 +66,24 @@
 
         static void DesenharDiamante(int tamanho)
         {
-            DesenharParteSuperioDiamante(tamanho);
-            DesenharParteInferiorDiamante(tamanho);
+            // Desenha a parte de cima do diamante e a linha do meio
+            DesenharParteDiamante(tamanho, true);
+
+            // Desenha a parte de baixo do diamante
+            DesenharParteDiamante(tamanho, false);
         }
 
-        static void DesenharParteSuperioDiamante(int tamanho)
+        static void DesenharParteDiamante(int tamanho, bool parteSuperior)
         {
-            int espacos = tamanho / 2;
-            int xs = 1;
-
-            for (int i = 0; i <= tamanho / 2; i++)
+            int linhas = parteSuperior ? tamanho / 2 + 1 : tamanho / 2;
+            
+            for (int i = 0; i < linhas; i++)
             {
+                int indice = parteSuperior ? i : i + 1;
+                int espacos = parteSuperior ? tamanho / 2 - i : indice;
+                int xs = parteSuperior ? 2 * i + 1 : tamanho - 2 * indice;
+                
                 DesenharLinha(espacos, xs);
-                espacos--;
-                xs += 2;
-            }
-        }
-
-        static void DesenharParteInferiorDiamante(int tamanho)
-        {
-            int espacos = 1;
-            int xs = tamanho - 2;
-
-            for (int i = 0; i < tamanho / 2; i++)
-            {
-                DesenharLinha(espacos, xs);
-                espacos++;
-                xs -= 2;
             }
         }
 
